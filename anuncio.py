@@ -19,16 +19,45 @@ class Anuncio(ABC):
         return self.__ancho
 
     # Método setter para el ancho
-    ...
+    @ancho.setter
+    def ancho(self, ancho_nuevo: int) -> None:
+        if ancho_nuevo > 0:
+            self.__ancho = ancho_nuevo
+        else:
+            self.__ancho = 1
 
     # Método de propiedad para acceder al alto
-    ...
+    @property
+    def alto(self) -> int:
+        return self.__alto
 
     # Método setter para el alto
-    ...
+    @alto.setter
+    def alto(self, alto_nuevo: int) -> None:
+        if alto_nuevo > 0:
+            self.__alto = alto_nuevo
+        else:
+            self.__alto = 1
 
-    # Siguen los metodos
-    ...
+    @property
+    def url_archivo(self) -> str:
+        return self.__url_archivo
+    
+    @url_archivo.setter
+    def url_archivo(self, url_nuevo: str) -> None:
+        self.__url_archivo = url_nuevo
+
+    @property
+    def url_clic(self) -> str:
+        return self.__url_clic
+    
+    @url_clic.setter
+    def url_clic(self, url_nuevo: str) -> None:
+        self.__url_clic = url_nuevo
+
+    @property
+    def sub_tipo(self) -> str:
+        return self.__sub_tipo
 
     # Método setter para el subtipo
     @sub_tipo.setter
@@ -66,3 +95,46 @@ class Anuncio(ABC):
         pass
 
     # Sigue el codigo
+
+class Video(Anuncio):
+    SUB_TIPOS = ('instream', 'outstream')
+
+    def __init__(self, url_archivo: str, url_clic: str, sub_tipo: str, duracion: int):
+        # Ancho y alto fijos a 1 para todas las instancias de Video
+        super().__init__(1, 1, url_archivo, url_clic, sub_tipo)
+        self.duracion = duracion
+    
+    @property
+    def duracion(self) -> int:
+        return self.__duracion
+
+    @duracion.setter
+    def duracion(self, duracion_nueva: int) -> None:
+        if duracion_nueva > 0:
+            self.__duracion = duracion_nueva
+        else:
+            self.__duracion = 5
+
+    def comprimir_anuncio(self):
+        print("COMPRESIÓN DE VIDEO NO IMPLEMENTADA AÚN")
+
+    def redimensionar_anuncio(self):
+        print("RECORTE DE VIDEO NO IMPLEMENTADO AÚN")
+
+class Display(Anuncio):
+    SUB_TIPOS = ('tradicional', 'native')
+
+    def comprimir_anuncio(self):
+        print("COMPRESIÓN DE ANUNCIOS DISPLAY NO IMPLEMENTADA AÚN")
+
+    def redimensionar_anuncio(self):
+        print("REDIMENSIONAMIENTO DE ANUNCIOS DISPLAY NO IMPLEMENTADO AÚN")
+
+class Social(Anuncio):
+    SUB_TIPOS = ('facebook', 'linkedin')
+
+    def comprimir_anuncio(self):
+        print("COMPRESIÓN DE ANUNCIOS DISPLAY NO IMPLEMENTADA AÚN")
+
+    def redimensionar_anuncio(self):
+        print("REDIMENSIONAMIENTO DE ANUNCIOS DISPLAY NO IMPLEMENTADO AÚN")
