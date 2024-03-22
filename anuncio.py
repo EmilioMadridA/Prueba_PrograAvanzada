@@ -94,7 +94,6 @@ class Anuncio(ABC):
     def redimensionar_anuncio(self) -> None:  # Método abstracto para redimensionar los anuncios
         pass
 
-    # Sigue el codigo
 
 class Video(Anuncio):
     SUB_TIPOS = ('instream', 'outstream')
@@ -115,7 +114,7 @@ class Video(Anuncio):
         else:
             self.__duracion = 5
 
-    def comprimir_anuncio(self):
+    def comprimir_anuncios(self):
         print("COMPRESIÓN DE VIDEO NO IMPLEMENTADA AÚN")
 
     def redimensionar_anuncio(self):

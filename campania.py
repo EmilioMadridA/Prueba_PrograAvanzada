@@ -1,13 +1,16 @@
 # Importar las clases necesarias
-from error import ...
+from error import LargoExcedidoError
 from anuncio import Video, Social, Display
-from datetime import ...
+from datetime import date
 
 # Definir la clase Campania
 class Campania():
-    def __init__(self, nombre: str, fecha_inicio: date,
-            fecha_termino: date, anuncios: list) -> None:
-        # Inicializa la campania con nombre, fechas de inicio y termino, y una lista de anuncios
+    def __init__(self, nombre: str, fecha_inicio: date, 
+        fecha_termino: date, anuncios: list) -> None:
+        self.__nombre = nombre
+        self.__fecha_inicio = fecha_inicio
+        self.__fecha_termino = fecha_termino
+        self.__anuncios = [self.__obtener_instancia_anuncio(anuncio) for anuncio in anuncios]
 
     # Método para obtener la instancia del tipo correcto de anuncio
     def __obtener_instancia_anuncio(self, anuncio: dict):
@@ -35,9 +38,15 @@ class Campania():
     @nombre.setter
     def nombre(self, nombre: str) -> None:
         # Verifica que el nombre no supere los 250 caracteres
+        if len(nombre) > 250:
+            raise LargoExcedidoError("El nombre de la campaña supera los 250 caracteres")
+        else:
+            self.__nombre = nombre
 
     # Método de propiedad para acceder a la fecha de inicio
-    ...
+    @property
+    def fecha_inicio(self) -> date:
+        return self.__fecha_inicio
 
     # Método setter para la fecha de inicio
     @fecha_inicio.setter
@@ -45,10 +54,13 @@ class Campania():
         self.__fecha_inicio = fecha_inicio
 
     # Método de propiedad para acceder a la fecha de término
-    ...
+    @property
+    def fecha_termino(self) -> date:
+        return self.__fecha_termino
 
     # Método setter para la fecha de término
-    ...
+    def fecha_termino(self, fecha_termino_nueva: date) -> None:
+        self.__fecha_termino = fecha_termino_nueva
 
     # Método de propiedad para acceder a la lista de anuncios
     @property

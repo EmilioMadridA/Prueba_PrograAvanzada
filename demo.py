@@ -1,7 +1,7 @@
 # Importa la clase Campania desde el módulo campania
 from campania import Campania
 # Importa la clase date desde el módulo datetime
-from date import datatime
+from datetime import date
 
 # Creación de una instancia de Campania y definición de sus atributos
 c = Campania("Campania Demo", date.today(), date.today(), [
